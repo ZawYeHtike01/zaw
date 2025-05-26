@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/p3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <title>Zaw</title>
+</head>
+<body>
+    <div class="container" id="container">
+        <h1 class="header_text">Will You Be My Valetine?</h1>
+        <div class="gif_container">
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDJ5aGhiYmJ6a2Zranczd3RlZ2JpNmRlNjY3cDFsNnlkbGc4dzR4MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VPpo5DlqMkrbm0Yw9u/giphy.gif" alt="Cute Capoo GIF">
+        </div>
+        <div class="buttons">
+            <button class="btn" id="yesButton">Yes</button>
+            <button class="btn" id="noButton">No</button>
+        </div>
+    </div>
+    
+    <script>
+        const wrapper=document.getElementById('container');
+        const noBtn=document.getElementById('noButton');
+        const yesBtn=document.getElementById("yesButton");
+
+        yesBtn.addEventListener('click',()=>{
+            window.location.href="/p2.html";
+        })
+
+
+        document.addEventListener('mousemove', (e) => {
+            const noBtnRect = noBtn.getBoundingClientRect();
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            const btnCenterX = noBtnRect.left + noBtnRect.width / 2;
+            const btnCenterY = noBtnRect.top + noBtnRect.height / 2;
+
+            const dx = mouseX - btnCenterX;
+            const dy = mouseY - btnCenterY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            const threshold = 50; // px - how close is "too close"
+
+            if (distance < threshold) {
+                const containerRect = container.getBoundingClientRect();
+
+                const maxX = containerRect.width - noBtnRect.width;
+                const maxY = containerRect.height - noBtnRect.height;
+
+                const randX = Math.random() * maxX;
+                const randY = Math.random() * maxY;
+
+                noBtn.style.left = `${randX}px`;
+                noBtn.style.top = `${randY}px`;
+            }
+        });
+    </script> 
+</body>
+</html>
